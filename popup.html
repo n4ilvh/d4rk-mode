@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<style>
+body{
+    min-width: 200px;
+    background-color: #c2beb9;
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+    border-radius: 15px;
+}
+
+h1{
+    font-family: "Jersey 15", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: xx-large;
+}
+.blue{
+    color: #406176
+}
+
+.red{
+    color: #ab563e
+}
+p, .button{
+    font-family: "Lato", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: small
+}
+
+.button{
+    background-color: #a1b8bc;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 2rem;
+    width: 4rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    translate: 4rem;
+}
+
+.row{
+    padding: 0 0.35rem;
+    pointer-events: none;
+}
+
+.circle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    background-color: #696c70;
+    pointer-events: none;
+}
+
+.no-highlight{
+    user-select: none;
+}
+
+/* animations */
+
+@keyframes moveCircleOn{
+    from{
+        left: 0;
+        background-color: #696c70;
+    }
+
+    to{
+        left: 2rem;
+        background-color: #918d6e;
+    }
+}
+
+@keyframes moveCircleOff{
+    from{
+        left: 2rem;
+        background-color: #918d6e;
+    }
+
+    to{
+        left: 0;
+        background-color: #696c70;
+    }
+}
+    
+@keyframes changeBackgroundOn{
+    from{
+        background-color: #a1b8bc;
+    }
+
+    to{
+        background-color: #707753;
+    }
+}
+
+@keyframes changeBackgroundOff{
+    from{
+        background-color: #707753;
+    }
+
+    to{
+        background-color: #a1b8bc;
+    }
+}
+
+</style>
+<body class ="popup">
+    <h1>
+        <span class="blue no-highlight">d</span><span class="red no-highlight">4</span><span class="blue no-highlight">rk mode</span>
+    </h1>
+    <p class="no-highlight"> Enable dark mode for any website</p>
+    <div class="button">
+        <div class="row no-highlight">On</div>
+        <div class="row no-highlight">Off</div>
+        <div class="circle"></div>
+
+    </div>
+</body>
+<script src="popup.js"></script>
+</html>

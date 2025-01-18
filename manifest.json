@@ -1,0 +1,25 @@
+{
+    "name": "d4rk mode",
+    "description": "Go from dark mode to light mode",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "background": {"service_worker": "background.js"},
+    "permissions": ["activeTab", "scripting", "tabs"],
+    "host_permissions": ["https://*/*","http://*/*"],
+    "action": {
+        "default_title": "d4rk mode",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": ["appOn.js", "appOff.js"],
+            "matches": ["https://*/*","http://*/*"]
+        }  
+    ]
+
+}
