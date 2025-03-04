@@ -8,3 +8,4 @@ A useful chrome extension that can enable dark mode on websites that don't have 
 ## Features
 - Toggle dark mode for websites.
 - Prevents media elements like images and videos from being affected.
+- Now compatible with pinterest 
