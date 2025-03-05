@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <title>Document</title>
+    
 </head>
 <style>
 body{
@@ -28,17 +29,25 @@ h1{
     font-size: xx-large;
 }
 .blue{
-    color: #406176
+    color: #406176;
+    text-shadow: 3px 3px 5px  rgba(0,0,0,0.7);
 }
 
 .red{
-    color: #ab563e
+    color: #e9dca2;
+    text-shadow: 3px 3px 5px  rgba(0,0,0,0.7);
+}
+
+.white{
+    color:rgb(224, 224, 224);
+    text-shadow: 3px 3px 5px  rgba(0,0,0,0.7);
 }
 p, .button{
     font-family: "Lato", serif;
     font-weight: 400;
     font-style: normal;
     font-size: small
+    
 }
 
 .button{
@@ -80,56 +89,58 @@ p, .button{
 @keyframes moveCircleOn{
     from{
         left: 0;
-        background-color: #696c70;
+        background-color: #f8de87;
     }
 
     to{
         left: 2rem;
-        background-color: #918d6e;
+        background-color: #b8c9d1;
     }
 }
 
 @keyframes moveCircleOff{
     from{
         left: 2rem;
-        background-color: #918d6e;
+        background-color: #b8c9d1;
     }
 
     to{
         left: 0;
-        background-color: #696c70;
+        background-color: #f8de87;
     }
 }
     
 @keyframes changeBackgroundOn{
     from{
-        background-color: #a1b8bc;
+        background-color: #705d35;
     }
 
     to{
-        background-color: #707753;
+        background-color: #272c42;
     }
 }
 
 @keyframes changeBackgroundOff{
     from{
-        background-color: #707753;
+        background-color: #272c42;
     }
 
     to{
-        background-color: #a1b8bc;
+        background-color: #705d35;
     }
 }
 
 </style>
 <body class ="popup">
+    <body style="background-image: url('icons/bg.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+
     <h1>
         <span class="blue no-highlight">d</span><span class="red no-highlight">4</span><span class="blue no-highlight">rk mode</span>
     </h1>
-    <p class="no-highlight"> Enable dark mode for any website</p>
+    <p class="white no-highlight">Enable dark mode for any website</p>
     <div class="button">
-        <div class="row no-highlight">On</div>
-        <div class="row no-highlight">Off</div>
+        <div class="row no-highlight" style="color: #b8c9d1">On</div>
+        <div class="row no-highlight" style="color: #e9dca2">Off</div>
         <div class="circle"></div>
 
     </div>

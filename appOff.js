@@ -1,24 +1,26 @@
 (function () {
-    // Reset dark mode filter for the entire page
+    // Remove the state from chrome.storage
+    chrome.storage.local.remove("darkModeEnabled", () => {
+        console.log("Dark mode is OFF.");
+    });
+
+    // Reset dark mode
     document.documentElement.style.filter = "none";
     document.documentElement.style.backgroundColor = "";
     document.body.style.backgroundColor = "";
 
-    // Function to reset media elements (images, pictures, videos, etc.)
+    // Function to reset media elements
     function resetMediaElements() {
         const mediaElements = document.querySelectorAll("img, picture, video, svg, canvas");
         mediaElements.forEach((element) => {
-            // Reset the filter and remove the dark mode fix marker
             element.style.filter = "none";
             delete element.dataset.darkModeFixed;
         });
     }
 
-    // Function to reset Pinterest's background (if applicable)
+    // Function to reset Pinterest's background
     function resetPinterestBackground() {
         if (!window.location.hostname.includes("pinterest.com")) return;
-
-        // Reset the background color for Pinterest's wrapper
         const pinterestBg = document.querySelector("[data-test-id='fullPageWrapper']");
         if (pinterestBg) {
             pinterestBg.style.backgroundColor = "";
@@ -33,13 +35,12 @@
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.type === "childList") {
-                resetMediaElements(); // Reset new images/media
-                resetPinterestBackground(); // Reset Pinterest background
+                resetMediaElements();
+                resetPinterestBackground();
             }
         });
     });
 
-    // Observe only relevant parts of the DOM for better performance
     const observerConfig = { childList: true, subtree: true };
     observer.observe(document.body, observerConfig);
 

@@ -3,49 +3,44 @@ document.addEventListener("DOMContentLoaded", () => {
         const button = document.querySelector(".button");
         const circle = document.querySelector(".circle");
 
-        chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-            const tabUrl = tabs[0]?.url; // Get the URL of the active tab
+        // Check the global dark mode state
+        chrome.storage.local.get("darkModeEnabled", (data) => {
+            let buttonOn = data.darkModeEnabled || false; // Default to false if not set
+            console.log("Retrieved dark mode state from storage:", buttonOn ? "ON" : "OFF");
 
-            if (!tabUrl) {
-                console.error("Tab URL not found.");
-                return;
-            }
-
-            const domain = new URL(tabUrl).hostname; // Extract the domain from the URL
-            let buttonOn = false; // Default state for this domain
-
-            // Check if the domain's state is saved
-            chrome.storage.local.get(domain, (data) => {
-                buttonOn = data[domain] || false;
-
-                // Set initial UI state
-                if (button && circle) {
-                    if (buttonOn) {
-                        circle.style.animation = "moveCircleOn 0s forwards";
-                        button.style.animation = "changeBackgroundOn 0s forwards";
-                    } else {
-                        circle.style.animation = "moveCircleOff 0s forwards";
-                        button.style.animation = "changeBackgroundOff 0s forwards";
-                    }
+            // Set initial UI state
+            if (button && circle) {
+                if (buttonOn) {
+                    circle.style.animation = "moveCircleOn 0s forwards";
+                    button.style.animation = "changeBackgroundOn 0s forwards";
                 } else {
-                    console.error("Button or circle elements not found.");
+                    circle.style.animation = "moveCircleOff 0s forwards";
+                    button.style.animation = "changeBackgroundOff 0s forwards";
                 }
-            });
+            } else {
+                console.error("Button or circle elements not found.");
+            }
 
             // Add click event listener to toggle state
             button.addEventListener("click", () => {
                 buttonOn = !buttonOn; // Toggle state
+                console.log("Toggling dark mode to:", buttonOn ? "ON" : "OFF");
 
-                // Save the updated state for this domain
-                chrome.storage.local.set({ [domain]: buttonOn }, () => {
-                    console.log(`Saved state for ${domain}:`, buttonOn);
+                // Save the updated global state
+                chrome.storage.local.set({ darkModeEnabled: buttonOn }, () => {
+                    console.log("Saved dark mode state to storage:", buttonOn ? "ON" : "OFF");
                 });
 
-                // Send a message to the background script
-                chrome.runtime.sendMessage({
-                    action: "toggleDarkMode",
-                    tabId: tabs[0].id,
-                    script: buttonOn ? ["appOn.js"] : ["appOff.js"], // Adjust based on state
+                // Send a message to the background script to inject the appropriate script
+                chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+                    if (tabs[0]?.id) {
+                        console.log(`Sending message to inject ${buttonOn ? "appOn.js" : "appOff.js"}`);
+                        chrome.runtime.sendMessage({
+                            action: "toggleDarkMode",
+                            tabId: tabs[0].id,
+                            script: buttonOn ? "appOn.js" : "appOff.js", // Script to inject
+                        });
+                    }
                 });
 
                 // Update UI
