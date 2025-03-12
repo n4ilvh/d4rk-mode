@@ -4,7 +4,7 @@
         console.log("Dark mode is OFF.");
     });
 
-    // Reset dark mode
+    // Reset dark mode for all websites
     document.documentElement.style.filter = "none";
     document.documentElement.style.backgroundColor = "";
     document.body.style.backgroundColor = "";
