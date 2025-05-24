@@ -1,5 +1,5 @@
 # d4rk-mode
-A useful chrome extension that can enable dark mode on websites that don't have it by inverting the background's colour. Still in very early stages and works best on google docs.
+A useful chrome extension that can enable dark mode on websites that don't have it by inverting the background's colour. Still in very early stages.
 
 ## Installation
 - Download the extension.
